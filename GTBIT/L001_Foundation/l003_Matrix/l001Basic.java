@@ -108,6 +108,36 @@ public class l001Basic{
         }
     }
 
+    //The State Of Wakanda - 2
+    public static void diagonalTraversal(){
+        int n = scn.nextInt();
+        int[][] arr = new int[n][n];
+        for(int i=0;i<n;++i){
+            for(int j=0;j<n;++j){
+                arr[i][j] = scn.nextInt();
+            }
+        }
+        for(int gap=0;gap<n;++gap){
+            int i=0,j=gap;
+            while(j<n){
+                System.out.println(arr[i][j]);
+                ++i;++j;
+            }
+        }
+    }
+
+    //Saddle Point
+    public static void saddlePoint(){
+        int n = scn.nextInt();
+        int[][] arr = new int[n][n];
+        for(int i=0;i<n;++i){
+            for(int j=0;j<n;++j){
+                arr[i][j] = scn.nextInt();
+            }
+        }
+        
+    }
+
     public static void main(String[] args){
         // test1();
         waveArrayLeftRight();
