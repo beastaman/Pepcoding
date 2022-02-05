@@ -129,13 +129,97 @@ public class l001Basic{
     //Saddle Point
     public static void saddlePoint(){
         int n = scn.nextInt();
+        int m = n;
         int[][] arr = new int[n][n];
         for(int i=0;i<n;++i){
             for(int j=0;j<n;++j){
                 arr[i][j] = scn.nextInt();
             }
         }
-        
+        for(int row=0;row<n;++row){
+            int col=0;
+            for(int j=0;j<m;++j){
+                if(arr[row][j]<arr[row][col]){
+                    col=j;
+                }
+            }
+            int minEle = arr[row][col];
+            boolean saddlePt = true;
+            for(int i=0;i<n;++i){
+                if(arr[i][col]>minEle){
+                    saddlePt = false;
+                    break;
+                }
+            }
+            if(saddlePt){
+                System.out.println(minEle);
+                return;
+            }
+
+        }
+        System.out.println("Invalid input");
+    }
+
+    //search-in-a-sorted-2d-array
+    public static void searchInSortedMatrix(int[][] arr,int data){
+        int i=0,j=arr[0].length-1;
+        while(i<arr.length && j>=0){
+            if(arr[i][j]==data){
+                System.out.println(i+"\n"+j);
+                return ;
+            }
+            else if(arr[i][j] < data){
+                --j;
+            }
+            else{
+                ++j;
+            }
+        }
+        // use any one of the while loop
+        i=arr.length-1,j=0;
+        while(j<arr[0].length && i>=0){
+            if(arr[i][j]==data){
+                System.out.println(i+"\n"+j);
+                return ;
+            }
+            else if(arr[i][j] < data){
+                ++j;
+            }
+            else{
+                --i;
+            }
+        }
+
+        System.out.println("Not Found");
+    }
+    
+    
+    // Rotate Matrix by 90
+    public static void rotateMatrix90(int[][] arr){
+        // Transpose of a 2d matrix
+        int n = arr.length;
+        for(int i=0;i<n;++i){
+            for(int j=i;j<n;++j){
+                int temp=arr[i][j];
+                arr[i][j]=arr[j][i];
+                arr[j][i]=temp;
+            }
+        }
+        // transpose done
+        for(int i=0;i<n;++i){
+            for(int j=0;j<n/2;++j){
+                int temp=arr[i][j];
+                arr[i][j]=arr[i][n-1-j];
+                arr[i][n-1-j]=temp;
+            }
+        }
+        for(int i=0;i<n;++i){
+            for(int j=i;j<n;++j){
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.println();
+        }
+
     }
 
     public static void main(String[] args){

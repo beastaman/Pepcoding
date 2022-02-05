@@ -180,6 +180,26 @@ public class l001Basics{
         }
     }
 
+    // binary search when one shoe is missing from a pair of shoe , rest have complete pair 
+    // 1 1 2 2 3 3 4 5 5 6 6 7 7 8 8 9 9
+    // this ques will come again in binary search
+    public static void binarySearchOnShoes(int[] arr){
+        int si=0,ei=arr.length-1;
+        int mid=-1;
+        while(si<ei){
+            mid = (si+ei) /2;
+            if(mid%2==0){
+                if(arr[mid]==arr[mid+1]) si=mid+2;
+                else ei=mid;
+            }
+            else{
+               if(arr[mid]==arr[mid-1]) si=mid+1;
+               else ei=mid; 
+            }
+        }
+        return mid;
+    }
+
     public static void main(String[] args){
         Scanner scn = new Scanner(System.in);
         int n = scn.nextInt();
