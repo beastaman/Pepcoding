@@ -222,6 +222,42 @@ public class l001Basic{
 
     }
 
+    //Spiral Disaplay 
+    public static void spiralDisplay(int[][] arr){
+        int n=arr.length;
+        int m=arr[0].length;
+        int left=0,right=m-1;
+        int top=0,btm=n-1;
+        int dir=0;
+        while(top<=btm && left<=right){
+            if(dir==0){
+                for(int x=top;x<=btm;++x){
+                    System.out.println(arr[x][left]);
+                }
+                ++left;
+            }
+            else if(dir==1){
+                for(int x=left;x<=right;++x){
+                    System.out.println(arr[btm][x]);
+                }
+                --btm;
+            }
+            else if(dir==2){
+                for(int x=btm;x>=top;--x){
+                    System.out.println(arr[x][right]);
+                }
+                --right;
+            }
+            else if(dir==3){
+                for(int x=right;x>=left;--x){
+                    System.out.println(arr[top][x]);
+                }
+                ++top;
+            }
+            dir=(dir+1)%4;
+        }
+    }
+
     public static void main(String[] args){
         // test1();
         waveArrayLeftRight();
