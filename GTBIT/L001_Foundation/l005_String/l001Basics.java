@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class l001Basics{
     private static Scanner scn = new Scanner(System.in);
@@ -28,7 +29,29 @@ public class l001Basics{
         System.out.println(sb.toString());
     }
 
+    // aabbcdd -> a2b2cd2
+    public static String compress(String str){
+        StringBuilder sb = new StringBuilder();
+        char prevChar = '0';
+        int i = 0;
+        while(i<str.length()){
+            int count = 1;
+            while(i<str.length() && prevChar == str.charAt(i)){
+                ++count;
+                ++i;
+            }
+            sb.append(prevChar);
+            sb.append(count);
+            if(i<str.length()) prevChar = str.charAt(i);
+            ++i;
+        }
+        System.out.println(sb.toString());
+        return sb.toString().substring(2);
+    }
+
     public static void main(String[] args){
-        test3();
+        // test3();
+        String res = compress("aaabbbbbddrreff");
+        System.out.println(res);
     }
 }
