@@ -31,9 +31,10 @@ public class l001Basics{
 
     // aabbcdd -> a2b2cd2
     public static String compress(String str){
+        if(str.length() == 0) return "";
         StringBuilder sb = new StringBuilder();
-        char prevChar = '0';
-        int i = 0;
+        char prevChar = str.charAt(0);
+        int i = 1;
         while(i<str.length()){
             int count = 1;
             while(i<str.length() && prevChar == str.charAt(i)){
@@ -46,12 +47,32 @@ public class l001Basics{
             ++i;
         }
         System.out.println(sb.toString());
-        return sb.toString().substring(2);
+        // return sb.toString().substring(2);
+        return sb.toString();
+    }
+
+    //abaddaccb -> a3b2c2d2  // use frequency method
+    public static String compress1(String str){
+
+        StringBuilder sb = new StringBuilder();
+        int[] freq = new int[26];
+        for(int i=0;i<str.length();++i){
+            freq[str.charAt(i)-'a']++;
+        }
+        // Run Length Encoding String
+        for(int i=0;i<freq.length;++i){
+            char ch = (char)('a'+i);
+            if(freq[i]>0){
+                sb.append(ch);
+                sb.append(freq[i]);
+            }
+        }
+        return sb.toString();
     }
 
     public static void main(String[] args){
         // test3();
-        String res = compress("aaabbbbbddrreff");
+        String res = compress1("aaabbbbbddrreff");
         System.out.println(res);
     }
 }
