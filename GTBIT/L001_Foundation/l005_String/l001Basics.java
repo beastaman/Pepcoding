@@ -70,6 +70,86 @@ public class l001Basics{
         return sb.toString();
     }
 
+    //https://nados.io/question/string-compression?zen=true
+    public static String compression3(String str){
+		if(str.length() == 0) return "";
+        StringBuilder sb = new StringBuilder();
+        char prevChar = str.charAt(0);
+        int i = 1;
+        while(i<str.length()){
+            int count = 1;
+            while(i<str.length() && prevChar == str.charAt(i)){
+                ++count;
+                ++i;
+            }
+            sb.append(prevChar);
+            if(i==str.length())	break;
+			prevChar = str.charAt(i);
+        }
+        return sb.toString();
+	}
+
+    //https://nados.io/question/string-compression?zen=true
+	public static String compression4(String str){
+		if(str.length() == 0) return "";
+        StringBuilder sb = new StringBuilder();
+        char prevChar = str.charAt(0);
+        int i = 0;
+        while(i<str.length()){
+            int count = 1;
+			++i;
+            while(i<str.length() && prevChar == str.charAt(i)){
+                ++count;
+                ++i;
+            }
+            sb.append(prevChar);
+            if(count>1) sb.append(count);
+            if(i==str.length())	break;
+			prevChar = str.charAt(i);
+        }
+        return sb.toString();
+	}
+
+    //Toggle Case
+    public static void toggleCase(String str){
+		//write your code here
+		StringBuilder sb = new StringBuilder();
+        for(int i=0;i<str.length();++i){
+            char ch = str.charAt(i);
+            if(ch>='a' && ch<='z'){
+                sb.append((char)('A'+(ch-'a')));
+            }
+            else{
+                sb.append((char)('a'+(ch-'A')));
+            }
+        }
+        System.out.println(sb.toString());
+	}
+
+    // Print All Palindromic Substrings
+    public static void printAllPalindromicSubStrings(String str){
+		//write your code here
+		for(int i=0;i<str.length();++i){
+			for(int j=i;j<str.length();++j){
+				int si=i,ei=j;
+				boolean flag=true;
+				while(si<=ei){
+					if(str.charAt(si)==str.charAt(ei)){
+						++si;
+						--ei;
+					}
+					else{
+						flag=false;
+						break;
+					}
+				}
+				if(flag){
+					System.out.println(str.substring(i,j+1));
+				}
+			}
+		}
+	}
+
     public static void main(String[] args){
         // test3();
         String res = compress1("aaabbbbbddrreff");
