@@ -149,6 +149,62 @@ public class l001Basics{
 			}
 		}
 	}
+    // String with Diff of every Consecutive character
+    public static String stringWithDiffConsecutive Char(String str){
+		// write your code here
+        if(str.length() <=1) return str;
+		StringBuilder sb = new StringBuilder();
+		sb.append(str.charAt(0));
+		for(int i=1;i<str.length();++i){
+			sb.append((int)(str.charAt(i)-str.charAt(i-1)));
+			sb.append(str.charAt(i));
+		}
+		return sb.toString();
+	}
+
+    //Print All Permutations of String Iteratively
+    public static void printAllPermutationIteratively(String str){
+        ArrayList<String> ans = new ArrayList<>();
+        ans.add(str.charAt(0)+"");
+        for(int i=1;i<str.length();++i){
+            char ch = str.charAt(i);
+            ArrayList<String> smallAns = new ArrayList<>();
+            for(String s : ans){
+                for(int j=0;j<=s.length();++j){
+                    String ns = s.substring(0,j)+ch+s.substring(j);
+                    smallAns.add(ns);
+                }
+            }
+            ans = smallAns;
+        }
+    }
+
+    // Factorial of a Number
+    public static int factorial(int n) {
+        int fact = 1;
+        for (int i = 2; i <= n; i++) {
+            fact *= i;
+        }
+        return fact;
+    }
+
+    //Print All Permutations of String Iteratively -- Sumeet Sie method
+    public static void printAllPermutationIterativelyTricky(String str){
+        int n = str.length();
+        int f = factorial(n);
+        for(int i=0;i<f;++i){
+            StringBuilder sb = new StringBuilder(str);
+            int temp=i;
+            for(int div=n;div>=1;--div){
+                int q = temp/div;
+                int r = temp%div;
+                System.out.print(sb.charAt(r));
+                sb.deleteCharAt(r);
+                temp = q;
+            }
+            System.out.println();
+        }
+    }
 
     public static void main(String[] args){
         // test3();
