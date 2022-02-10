@@ -206,6 +206,47 @@ public class l001Basics{
         }
     }
 
+    //https://codingbat.com/prob/p151359
+    public static String withoutX2(String str) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<str.length();++i){
+            if(i<2 && str.charAt(i)=='x') continue;
+            sb.append(str.charAt(i));
+        }
+        return sb.toString();
+    }
+
+    // Remove Primes
+    public static ArrayList<Integer> removePrimes(ArrayList<Integer> al){
+		// write your code here
+		ArrayList<Integer> nal = new ArrayList<>();
+		for(int x: al){
+			if(isPrime(x)==false) nal.add(x);
+		}
+		return nal;
+	}
+
+    https://leetcode.com/problems/reverse-string-ii/  -- StringBuilder Method
+    public static String reverseStr1(String s, int k) {
+        int n=s.length();
+        StringBuilder sb = new StringBuilder(s);
+        int si=0;
+        while(si<n){
+            int lo=si,hi=si+k-1;
+            if(hi>=n) hi=n-1;
+            while(lo<=hi){
+                char chl=sb.charAt(lo);
+                char chh=sb.charAt(hi);
+                sb.setCharAt(lo,chh);
+                sb.setCharAt(hi,chl);
+                ++lo;
+                --hi;
+            }
+            si+=2*k;
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args){
         // test3();
         String res = compress1("aaabbbbbddrreff");
