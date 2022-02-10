@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 public class l001Basics{
     private static Scanner scn = new Scanner(System.in);
@@ -150,7 +151,7 @@ public class l001Basics{
 		}
 	}
     // String with Diff of every Consecutive character
-    public static String stringWithDiffConsecutive Char(String str){
+    public static String stringWithDiffConsecutiveChar(String str){
 		// write your code here
         if(str.length() <=1) return str;
 		StringBuilder sb = new StringBuilder();
@@ -226,7 +227,7 @@ public class l001Basics{
 		return nal;
 	}
 
-    https://leetcode.com/problems/reverse-string-ii/  -- StringBuilder Method
+    //https://leetcode.com/problems/reverse-string-ii/  -- StringBuilder Method
     public static String reverseStr1(String s, int k) {
         int n=s.length();
         StringBuilder sb = new StringBuilder(s);
@@ -247,9 +248,70 @@ public class l001Basics{
         return sb.toString();
     }
 
+    //https://leetcode.com/problems/reverse-string-ii/  -- toCharArray() Approach
+    public static String reverseStr2(String s, int k) {
+        char[] ca = s.toCharArray();
+        int n=s.length();
+        int si=0;
+        while(si<n){
+            int lo=si,hi=si+k-1;
+            if(hi>=n) hi=n-1;
+            while(lo<=hi){
+                char temp = ca[lo];
+                ca[lo] = ca[hi];
+                ca[hi] = temp;
+                ++lo;
+                --hi;
+            }
+            si += 2*k;
+        }
+        s = String.valueOf(ca);
+        return s;
+    }
+
+    // https://leetcode.com/problems/first-unique-character-in-a-string/
+    public static int firstUniqChar(String s) {
+        int n=s.length();
+        int[] freq = new int[26];
+        for(int i=0;i<n;++i){
+            freq[(int)(s.charAt(i)-'a')]++;
+        }
+        int res=-1;
+        for(int i=0;i<n;++i){
+            if(freq[s.charAt(i)-'a']==1){
+                res=i;
+                break;
+            }
+        }
+        return res;
+    }
+
+    
+    // Salesforce London Interview Ques
+    public static boolean isPrime(int n){
+        boolean flag=true;
+        for(int i=2;i*i<=n;++i){
+            if(n%i==0){
+                flag=false;
+                break;
+            }
+        }
+        return flag;
+    }
+    public static void primeNumbers(int n,ArrayList<Integer> ans){
+        for(int i=2 ;i*i<=n;++i){
+            if(isPrime(i)) ans.add(i);
+        }
+    }
+    public static void primeFactorsForQuery(){
+        ArrayList<Integer> list = new ArrayList<>();
+        primeNumbers(500,list);
+        System.out.println(list);
+    }
+    // Upto here
+    
+
     public static void main(String[] args){
-        // test3();
-        String res = compress1("aaabbbbbddrreff");
-        System.out.println(res);
+        primeFactorsForQuery();
     }
 }
