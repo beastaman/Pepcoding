@@ -303,15 +303,39 @@ public class l001Basics{
             if(isPrime(i)) ans.add(i);
         }
     }
-    public static void primeFactorsForQuery(){
-        ArrayList<Integer> list = new ArrayList<>();
-        primeNumbers(500,list);
-        System.out.println(list);
+    public static void primeFactors(int num,ArrayList<Integer> list){
+        int idx=0;
+        while(num!=1 && idx < list.size()){
+            int count=0;
+            while(num%list.get(idx) ==0){
+                num /= list.get(idx);
+                ++count;
+            }
+            if(count>0){
+                System.out.print(list.get(idx)+"^"+count+" ");
+            }
+            ++idx;
+        }
+        if(num>1){
+            System.out.print(num+"^"+1+" ");
+        }
+        System.out.println();
     }
+    public static void primeFactorsForQuery(int[] query){
+        ArrayList<Integer> list = new ArrayList<>();
+        primeNumbers(10000,list);
+        // System.out.println(list);
+        for(int ele : query){
+            primeFactors(ele,list);
+        }
+    }   
     // Upto here
-    
+
 
     public static void main(String[] args){
-        primeFactorsForQuery();
+        int n=scn.nextInt();
+        int[] query = new int[n];
+        for(int i=0;i<n;++i) query[i]=scn.nextInt();
+        primeFactorsForQuery(query);
     }
 }
