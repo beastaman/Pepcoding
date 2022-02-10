@@ -1,3 +1,3 @@
 # Pepcoding
-DSA Questions in JAVA an C++.
+DSA Questions in JAVA and C++.
 
