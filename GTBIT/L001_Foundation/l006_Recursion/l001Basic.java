@@ -46,7 +46,22 @@ public class l001Basic{
         printIncreasingDecreasing(n-1);
         System.out.println(n);
     }
-    
+
+    public static int factorial(int n){
+        if(n==0) return 1;
+        return n*factorial(n-1);
+    }
+
+    public static int powerLinear(int x, int n){
+        if(n==0) return 1;
+        return x*powerLinear(x,n-1);
+    }
+
+    public static int powerLogarithmic(int x, int n){
+        if(n==0) return 1;
+        if(n%2 == 1) return x*powerLogarithmic(x,n/2)*powerLogarithmic(x,n/2);
+        else return powerLogarithmic(x,n/2)*powerLogarithmic(x,n/2);
+    }
 
     public static void main(String[] args){
         // printDecreasing(5);
