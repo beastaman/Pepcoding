@@ -18,6 +18,20 @@ int eulerFunction(int n){
     return count + 3;
 }
 
+void printAToB(int a,int b){
+    System.out.println(a);
+    if(a==b)  return;
+    printAToB(a+1,b);
+}
+
+// call with idx = 0 
+void displayArrayWithRecursion(vector<int>& arr,int idx){
+    if(idx == arr.size()) return;
+    cout<<arr[idx]<<"\n"; // print from idx 0 to n-1
+    displayArrayWithRecursion(arr,idx+1);
+    cout<<arr[idx]<<"\n"; // print from idx n-1 to 0
+}
+
 int main(){
     cout<<eulerFunction(5);
     return 0;
