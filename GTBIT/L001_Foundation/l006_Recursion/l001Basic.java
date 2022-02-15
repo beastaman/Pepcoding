@@ -111,14 +111,71 @@ public class l001Basic{
         return firstIndex(arr,idx+1,x);
     }
 
-    // lastIndex(arr,n-1,x)
-    public static int lastIndex(int[] arr, int idx, int x){
+    // lastIndex(arr,n-1,x) traversing n-1 to 0
+    public static int lastIndex1(int[] arr, int idx, int x){
         if(idx == -1) return -1;
         if(arr[idx] == x) return idx;
-        return lastIndex(arr,idx-1,x);
+        return lastIndex1(arr,idx-1,x);
     }
 
+    // lastIndex(arr,n-1,x) traversing 0 to n-1
+    public static int lastIndex2(int[] arr, int idx, int x){
+        if(idx == arr.length) return -1;
+        int res = lastIndex2(arr,idx+1,x);
+        if(res == -1 && arr[idx] == x)  return idx;
+        return res;
+    }
+
+    // All Indices Of Array
+    // public static int func(int[] arr, int x, int idx){
+    //     if(idx==arr.length) return 0;
+    //     int res=func(arr,x,idx+1);
+    //     if(arr[idx]==x) ++res;
+    //     return res;
+    // }
+    // public static void fillx(int[] xrr, int xidx, int[] arr,int idx,int x){
+    //     if(xidx == xrr.length || idx == arr.length) return;
+    //     if(arr[idx]==x){
+    //         xrr[xidx++]=idx;
+    //     }
+    //     fillx(xrr,xidx,arr,idx+1,x);
+    // }
+    // public static int[] allIndices(int[] arr, int x, int idx, int count) {
+    //     // write ur code here
+    //     int freq = func(arr,x,0);
+    //     int[] xrr = new int[freq];
+    //     fillx(xrr,0,arr,0,x);
+    //     return xrr;
+    // }
+
+    // All Indices of Array
+    public static int[] allIndices(int[] arr, int x, int idx, int count) {
+        if(idx == arr.length){
+            int[] base = new int[count];
+            return base;
+        }
+        if(arr[idx] == x) ++count;
+        int[] ans = allIndices(arr,x,idx+1,count);
+        if(arr[idx] == x) ans[count-1] = idx ;
+        return ans;
+    }
+
+    /* Recursion with ArrayList */
     
+    public static ArrayList<String> getSubSequence(String str) {
+        if(str.length()==0){
+            ArrayList<String> arrayList = new ArrayList<>();
+            arrayList.add("");
+            return arrayList;
+        }
+        int n=str.length();
+        ArrayList<String> arrayList = getSubSequence(str.substring(1,n)); // or str.substring(1));
+        int len = arrayList.size();
+        for(int i=0;i<len;++i){
+            arrayList.add(str.charAt(0)+arrayList.get(i));
+        }
+        return arrayList;
+    }
 
     public static void main(String[] args){
         // printDecreasing(5);

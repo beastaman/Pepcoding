@@ -32,6 +32,24 @@ void displayArrayWithRecursion(vector<int>& arr,int idx){
     cout<<arr[idx]<<"\n"; // print from idx n-1 to 0
 }
 
+int maxOfArray(vector<int>& arr,int idx){
+    if(idx == arr.size()) return -1e9;
+    int maxOfSmallSeg = maxOfArray(arr,idx+1);
+    return max(arr[idx],maxOfSmallSeg);
+}
+
+int minOfArray(vector<int>& arr,int idx){
+    if(idx == arr.size()) return 1e9;
+    int minOfSmallSeg = minOfArray(arr,idx+1);
+    return min(arr[idx],minOfSmallSeg);
+}
+
+bool findData(vector<int>& arr, int idx, int data){
+    if(idx == arr.size()) return false;
+    if(arr[idx] == data) return true;
+    return findData(arr,idx+1,data);
+}
+
 int main(){
     cout<<eulerFunction(5);
     return 0;
