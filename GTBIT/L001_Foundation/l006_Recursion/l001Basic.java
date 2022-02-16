@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class l001Basic{
     private static Scanner scn = new Scanner(System.in);
@@ -68,9 +69,9 @@ public class l001Basic{
     public static void printZigZag(int n){
         if(n==0) return;
         System.out.print(n+" ");
-        pzz(n-1);
+        printZigZag(n-1);
         System.out.print(n+" ");
-        pzz(n-1);
+        printZigZag(n-1);
         System.out.print(n+" ");
     }
 
@@ -177,9 +178,31 @@ public class l001Basic{
         return arrayList;
     }
 
+    static String[] codes = {".;","abc","def","ghi","jkl",
+        "mno","pqrs","tu","vwx","yz"};
+    public static ArrayList <String> getKPC(String str, int idx){
+        if(idx == str.length()){
+            ArrayList <String> base = new ArrayList<>();
+            base.add("");
+            return base;
+        }
+        char ch = str.charAt(idx);
+        int cidx = (int)(ch-'0');
+        ArrayList <String> al = getKPC(str,idx+1);
+        ArrayList <String> nal = new ArrayList<>();
+        for(int i=0;i<codes[cidx].length();++i){
+            char curr = codes[cidx].charAt(i);
+            for(int j=0;j<al.size();++j){
+                nal.add(curr+al.get(j));
+            }
+        }
+        return nal;
+    } 
+
+
     public static void main(String[] args){
         // printDecreasing(5);
         // fun(5); //find output for this by dry run !
-
+        System.out.println(getKPC("78",0));
     }
 }
