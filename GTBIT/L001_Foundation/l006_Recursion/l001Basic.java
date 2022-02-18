@@ -276,7 +276,12 @@ public class l001Basic{
         return val + sumOfDigitsInString(str,idx+1);
     }
 
-    
+    // stringToNum(str,str.length()-1,1)
+    public static long stringToNum(String str, int idx,long pwr){
+        if(idx == -1) return 0;
+        long val = (str.charAt(idx)-'0')*pwr;
+        return val + stringToNum(str,idx-1,pwr*10); 
+    }
 
     public static void main(String[] args){
         // printDecreasing(5);
