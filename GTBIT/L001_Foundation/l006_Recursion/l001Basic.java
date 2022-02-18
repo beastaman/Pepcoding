@@ -327,7 +327,47 @@ public class l001Basic{
         }
     }
 
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-21removeadjacentduplicates
+    public static String removeAdjacentDuplicates(String str){
+        if(str.length()<=1) return str;
+        char ch = str.charAt(0);
+        String recString = removeAdjacentDuplicates(str.substring(1));
+        if(ch == recString.charAt(0)) return recString;
+        else return ch + recString;
+    }
+    public static void removeAdjacentDuplicates(String str, int idx, String ans){
+        if(idx == str.length()-1){
+            System.out.println(ans+str.charAt(str.length()-1));
+            return;
+        }
+        if(str.charAt(idx)==str.charAt(idx+1)){
+            removeAdjacentDuplicates(str,idx+1,ans);
+        }
+        else{
+            removeAdjacentDuplicates(str,idx+1,ans+str.charAt(idx));
+        }
+    }
 
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-22movecharacters
+    public static String moveCharacters(String str,char ch){
+        if(str.length()==1) return str;
+        char chr = str.charAt(0);
+        String res = moveCharacters(str.substring(1),ch);
+        if(ch == chr) return res + chr;
+        else return chr + res;
+    }
+    public static void moveCharacters(String str, String ans, char ch, int idx,int count){
+        if(idx==str.length()){
+            for(int i=0;i<count;++i) ans+=ch;
+            System.out.println(ans);
+            return;
+        }
+        if(str.charAt(idx)==ch) moveCharacters(str,ans,ch,idx+1,count+1);
+        else moveCharacters(str,ans+str.charAt(idx),ch,idx+1,count);
+    }
+
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-23countorremovehi
+    
 
     public static void main(String[] args){
         // printDecreasing(5);
