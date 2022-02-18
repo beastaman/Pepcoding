@@ -269,6 +269,7 @@ public class l001Basic{
         arr[val] = idx;
     }
 
+    // Hackerrank Pep https://www.hackerrank.com/contests/pepdec62017/challenges/filters/page:8
     // SumOfDigitInString
     public static int sumOfDigitsInString(String str, int idx){
         if(idx == str.length()) return 0;
@@ -283,13 +284,58 @@ public class l001Basic{
         return val + stringToNum(str,idx-1,pwr*10); 
     }
 
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-18stringonetwoarereverse
+    public static boolean stringOneTwoAreReverse(String str1, int idx1, String str2, int idx2){
+        if(idx1==str1.length() && idx2==-1) return true;
+        return (str1.charAt(idx1)==str2.charAt(idx2) && stringOneTwoAreReverse(str1,idx1+1,str2,idx2-1));
+    }
+
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-19palindromeofstring
+    public static boolean ok(char ch1, char ch2){
+        if(ch1>='A' && ch1<='Z'){
+            ch1 = (char)(ch1 + ('a'-'A'));
+        }
+        if(ch2>='A' && ch2<='Z'){
+            ch2 = (char)(ch2 + ('a'-'A'));
+        }
+        return ch1 == ch2;
+    }
+    public static boolean isPalin2(String str, int si, int ei){
+        if(si>=ei) return true;
+        return (ok(str.charAt(si),str.charAt(ei)) && isPalin2(str,si+1,ei-1));
+    }
+
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-20separateduplicates
+    public static String separateDuplicates(String str){
+        if(str.length() <= 1) return str;
+        char ch = str.charAt(0);
+        String recString = separateDuplicates(str.substring(1));
+        if(ch == recString.charAt(0)) return ch +"*"+recString;
+        else return ch + recString;
+    }
+    public static void separateDuplicates(String str, int idx, String ans){
+        if(idx == str.length()-1){
+            System.out.println(ans+str.charAt(str.length()-1));
+            return;
+        }
+        char ch = str.charAt(idx);
+        if(ch == str.charAt(idx+1)){
+            separateDuplicates(str,idx+1,ans+ch+"*");
+        }
+        else{
+            separateDuplicates(str,idx+1,ans+ch);
+        }
+    }
+
+
+
     public static void main(String[] args){
         // printDecreasing(5);
         // fun(5); //find output for this by dry run !
         // System.out.println(getKPC("78",0));
         // printRectangleNXM(0,0,3,5);
-        int n=4,m=5;
+        // int n=4,m=5;    printTriangle(1,1,1,n,m);
         // printRectangle(1,m,1,n,m);
-        printTriangle(1,1,1,n,m);
+        
     }
 }
