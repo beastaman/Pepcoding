@@ -199,10 +199,92 @@ public class l001Basic{
         return nal;
     } 
 
+    // print a rectangle of stars n*m
+    public static void printRectangleNXM(int cr,int cc, int n ,int m){
+        if(cc==m){
+            cc=0;
+            ++cr;
+            System.out.println();
+        }
+        if(cr==n) return;
+        System.out.print("*"+"\t");
+        printRectangleNXM(cr,cc+1,n,m);
+    }
+    /*
+    *******
+    *******
+    *******
+    *******
+    */
+    public static void printRectangle(int cst,int nst,int nor,int n,int m){
+        if(nor==n+1) return;
+        if(cst == nst+1) {
+            System.out.println();
+            printRectangle(1,nst,nor+1,n,m);
+            return;
+        }
+        System.out.print("*");
+        printRectangle(cst+1,nst,nor,n,m);
+    }
+
+    /*
+    *
+    **
+    ***
+    ****
+    *****
+    */
+    public static void printTriangle(int cst,int nst,int nor,int n,int m){
+        if(nor==n+1) return;
+        if(cst == nst+1) {
+            System.out.println();
+            printTriangle(1,nst+1,nor+1,n,m);
+            return;
+        }
+        System.out.print("*");
+        printTriangle(cst+1,nst,nor,n,m);
+    }
+
+    // Is given array a palindrome
+    public static boolean isPalin(int[] arr, int si, int ei){
+        if(si>ei) return true;
+        return (arr[si]==arr[ei] && isPalin(arr,si+1,ei-1));
+    }
+
+    // Reverse Array by Recursion
+    public static void reverseArray(int[] arr, int si, int ei){
+        if(si>=ei) return;
+        int temp=arr[si];
+        arr[si]=arr[ei];
+        arr[ei]=temp;
+        reverseArray(arr,si+1,ei-1);
+    }
+
+    // Inverse of Array by Recursion
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-13inversearray/problem
+    public static void inverseArray(int[] arr, int idx){
+        if(idx == arr.length) return;
+        int val = arr[idx];
+        inverseArray(arr,idx+1);
+        arr[val] = idx;
+    }
+
+    // SumOfDigitInString
+    public static int sumOfDigitsInString(String str, int idx){
+        if(idx == str.length()) return 0;
+        int val = (int)(str.charAt(idx)-'0');
+        return val + sumOfDigitsInString(str,idx+1);
+    }
+
+    
 
     public static void main(String[] args){
         // printDecreasing(5);
         // fun(5); //find output for this by dry run !
-        System.out.println(getKPC("78",0));
+        // System.out.println(getKPC("78",0));
+        // printRectangleNXM(0,0,3,5);
+        int n=4,m=5;
+        // printRectangle(1,m,1,n,m);
+        printTriangle(1,1,1,n,m);
     }
 }

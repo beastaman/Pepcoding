@@ -50,6 +50,16 @@ bool findData(vector<int>& arr, int idx, int data){
     return findData(arr,idx+1,data);
 }
 
+int fibo(int n){
+    if(n<=1) return n;
+    return fibo(n-1) + fibo(n-2);
+}
+
+int tribonacci(int n){
+    if(n<=2) return n==2?1:n ;
+    return tribonacci(n-1) + tribonacci(n-2) + tribonacci(n-3);
+}
+
 int main(){
     cout<<eulerFunction(5);
     return 0;
