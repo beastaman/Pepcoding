@@ -432,8 +432,122 @@ public class l001Basic{
         }
         else removeHiWithoutHit(str.substring(1),ans + str.charAt(0));
     }
+
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-26replacehiwithouthit
+    public static String replaceHiWithoutHit(String str){
+        if(str.length()<2) return str;
+        if(str.charAt(0)=='h' && str.charAt(1)=='i'){
+            if(str.length()>=3 && str.charAt(2)=='t') return "hit" + replaceHiWithoutHit(str.substring(3));
+            else return "pep" + replaceHiWithoutHit(str.substring(2));
+        } 
+        else return str.charAt(0) + replaceHiWithoutHit(str.substring(1));
+    }
+    public static void replaceHiWithoutHit(String str,String ans){
+        if(str.length()<2){
+            ans += str;
+            System.out.println(ans);
+            return;
+        }
+        if(str.charAt(0)=='h' && str.charAt(1)=='i'){
+            if(str.length()>=3 && str.charAt(2)=='t') replaceHiWithoutHit(str.substring(3),ans+"hit");
+            else replaceHiWithoutHit(str.substring(2),ans+"pep");
+        } 
+        else replaceHiWithoutHit(str.substring(1),ans + str.charAt(0));
+    }
+
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-27twincountoverlap
+    public static long twinCountOverlap(String str){
+        if(str.length()<3) return 0;
+        if(str.charAt(0)==str.charAt(2) && str.charAt(0)!=str.charAt(1)) return 1+twinCountOverlap(str.substring(1));
+        else return twinCountOverlap(str.substring(1));
+    }
+    public static void twinCountOverlap(String str,int count){
+        if(str.length()<3){
+            System.out.println(count);
+            return;
+        }
+        if(str.charAt(0)==str.charAt(2) && str.charAt(0)!=str.charAt(1)) twinCountOverlap(str.substring(1),count+1);
+        else twinCountOverlap(str.substring(1),count);
+    }
+
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-28twincountwithoutoverlap
+    public static long twinCountWithoutOverlap(String str){
+        if(str.length()<3) return 0;
+        if(str.charAt(0)==str.charAt(2) && str.charAt(0)!=str.charAt(1)) return 1+twinCountWithoutOverlap(str.substring(3));
+        else return twinCountWithoutOverlap(str.substring(1));
+    }
+    public static void twinCountWithoutOverlap(String str,int count){
+        if(str.length()<3){
+            System.out.println(count);
+            return;
+        }
+        if(str.charAt(0)==str.charAt(2) && str.charAt(0)!=str.charAt(1)) twinCountWithoutOverlap(str.substring(3),count+1);
+        else twinCountWithoutOverlap(str.substring(1),count);
+    }
+
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-29countofaaa
+    public static long countOfaaaOverlapAllowed(String str){
+        if(str.length()<3) return 0;
+        if(str.charAt(0)=='a' && str.charAt(1)=='a' && str.charAt(2)=='a') return 1+countOfaaaOverlapAllowed(str.substring(1));
+        else return countOfaaaOverlapAllowed(str.substring(1));
+    }
+    public static void countOfaaaWithoutOverlap(String str,int count){
+        if(str.length()<3){
+            System.out.println(count);
+            return;
+        }
+        if(str.charAt(0)=='a' && str.charAt(1)=='a' && str.charAt(2)=='a') countOfaaaWithoutOverlap(str.substring(3),count+1);
+        else countOfaaaWithoutOverlap(str.substring(1),count);
+    }
+
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-30printallpossiblecode
+    public static void printAllPossibleCode(String str, String ans, int idx){
+        if(idx==str.length()){
+            System.out.println(ans);
+            return;
+        }
+        if(idx==str.length()-1){
+            printAllPossibleCode(str,ans+(char)('a'+(str.charAt(idx)-'0')-1),idx+1);
+            return;
+        }
+        int val=(str.charAt(idx)-'0')*10+(str.charAt(idx+1)-'0');
+        int tval=(str.charAt(idx)-'0');
+        if(val==10 || val ==20){
+            printAllPossibleCode(str, ans+(char)('a'+val-1), idx+2);
+        }
+        else if(val>26){
+            printAllPossibleCode(str, ans+(char)('a'+tval-1), idx+1);
+        }
+        else{
+            printAllPossibleCode(str, ans+(char)('a'+tval-1), idx+1);
+            printAllPossibleCode(str, ans+(char)('a'+val-1), idx+2);
+        }
+    }
+
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-31specificstringbetweenparanthesis
+    public static void specificStringBetweenParanthesis(String str, String ans, int idx,int flag){
+        if(idx==str.length()){
+            System.out.println(ans);
+            return;
+        }
+        if(str.charAt(idx)=='(' && flag==0){
+            specificStringBetweenParanthesis(str, ans+"(", idx+1, 1);
+        }
+        else if(flag==1 && str.charAt(idx)==')'){
+            specificStringBetweenParanthesis(str, ans+")", idx+1, 0);
+        }
+        else if(flag==1){
+            specificStringBetweenParanthesis(str, ans+str.charAt(idx), idx+1, 1);
+        }
+        else if(flag==0){
+            specificStringBetweenParanthesis(str, ans, idx+1, 0);
+        }
+    }
+
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-32balancedparanthesis
+    // -> https://www.geeksforgeeks.org/check-for-balanced-parenthesis-without-using-stack/
     
-        
+    
 
     public static void main(String[] args){
         // printDecreasing(5);
