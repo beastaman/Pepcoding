@@ -367,7 +367,73 @@ public class l001Basic{
     }
 
     // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-23countorremovehi
+    public static long countHi(String str){
+        if(str.length()<2) return 0;
+        if(str.charAt(0)=='h' && str.charAt(1)=='i') return 1 + countHi(str.substring(2));
+        else return countHi(str.substring(1));
+    }
+    public static String removeHi(String str){
+        if(str.length()<2) return str;
+        if(str.charAt(0)=='h' && str.charAt(1)=='i') return removeHi(str.substring(2));
+        else return str.charAt(0) + removeHi(str.substring(1));
+    }
+    public static void removeHi(String str,String ans){
+        if(str.length()<2){
+            ans += str;
+            System.out.println(ans);
+            return;
+        }
+        if(str.charAt(0)=='h' && str.charAt(1)=='i') removeHi(str.substring(2),ans);
+        else removeHi(str.substring(1),ans + str.charAt(0));
+    }
+
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-24replacehiwithpep
+    public static String replaceHiWithpep(String str){
+        if(str.length()<2) return str;
+        if(str.charAt(0)=='h' && str.charAt(1)=='i') return "pep"+replaceHiWithpep(str.substring(2));
+        else return str.charAt(0) + replaceHiWithpep(str.substring(1));
+    }
+    public static void replaceHiWithpep(String str,String ans){
+        if(str.length()<2){
+            ans += str;
+            System.out.println(ans);
+            return;
+        }
+        if(str.charAt(0)=='h' && str.charAt(1)=='i') replaceHiWithpep(str.substring(2),ans+"pep");
+        else replaceHiWithpep(str.substring(1),ans + str.charAt(0));
+    }
+
+    // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-25hiwithouthit
+    public static long countHiWithoutHit(String str){
+        if(str.length()<2) return 0;
+        if(str.charAt(0)=='h' && str.charAt(1)=='i'){
+            if(str.length()>=3 && str.charAt(2)=='t') return countHiWithoutHit(str.substring(3));
+            else return 1 + countHiWithoutHit(str.substring(2));
+        }
+        else return countHiWithoutHit(str.substring(1));
+    }
+    public static String removeHiWithoutHit(String str){
+        if(str.length()<2) return str;
+        if(str.charAt(0)=='h' && str.charAt(1)=='i'){
+            if(str.length()>=3 && str.charAt(2)=='t') return "hit" + removeHiWithoutHit(str.substring(3));
+            else return removeHiWithoutHit(str.substring(2));
+        } 
+        else return str.charAt(0) + removeHiWithoutHit(str.substring(1));
+    }
+    public static void removeHiWithoutHit(String str,String ans){
+        if(str.length()<2){
+            ans += str;
+            System.out.println(ans);
+            return;
+        }
+        if(str.charAt(0)=='h' && str.charAt(1)=='i'){
+            if(str.length()>=3 && str.charAt(2)=='t') removeHiWithoutHit(str.substring(3),ans+"hit");
+            else removeHiWithoutHit(str.substring(2),ans);
+        }
+        else removeHiWithoutHit(str.substring(1),ans + str.charAt(0));
+    }
     
+        
 
     public static void main(String[] args){
         // printDecreasing(5);
