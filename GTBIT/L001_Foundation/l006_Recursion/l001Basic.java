@@ -547,6 +547,17 @@ public class l001Basic{
     // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-32balancedparanthesis
     // -> https://www.geeksforgeeks.org/check-for-balanced-parenthesis-without-using-stack/
     
+    //https://nados.io/question/print-subsequence?zen=true
+    // printSS(str,"",0);
+    public static void printSS(String str, String ans, int idx) {
+        if(idx == str.length()){
+            System.out.println(ans);
+            return;
+        }
+        printSS(str,ans+str.charAt(idx),idx+1);
+        printSS(str,ans,idx+1);
+    }
+
     
 
     public static void main(String[] args){
