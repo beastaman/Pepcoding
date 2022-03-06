@@ -67,12 +67,45 @@ public class l002{
         return al;
     }
 
+    //GetKPC
+    static String[] codes = {".;","abc","def","ghi","jkl",
+        "mno","pqrs","tu","vwx","yz"};
+    public static ArrayList<String> getKPC(String str,int idx) {
+        if(idx==str.length()){
+            ArrayList<String> base = new ArrayList<>();
+            base.add("");
+            return base;
+        }
+        char ch = str.charAt(idx);
+        int cidx = (int)(ch-'0');
+        ArrayList <String> al = getKPC(str,idx+1);
+        ArrayList <String> nal = new ArrayList<>();
+        for(int i=0;i<codes[cidx].length();++i){
+            char curr = codes[cidx].charAt(i);
+            for(int j=0;j<al.size();++j){
+                nal.add(curr+al.get(j));
+            }
+        }
+        return nal;
+    }
+
+    //PrintKPC
+    public static void printKPC(String str,int idx, String ans) {
+        if(idx==str.length()){
+            System.out.println(ans);
+            return;
+        }
+        int cidx=(int)(str.charAt(idx)-'0');
+        for(int i=0;i<codes[cidx].length();++i){
+            char curr = codes[cidx].charAt(i);
+            printKPC(str,idx+1,ans+curr);
+        }
+    }
+
     
 
 
     public static void main(String[] args){
-        String str = "abc";
-        
         
     }
 }
