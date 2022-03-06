@@ -43,6 +43,30 @@ public class l002{
     }
 
     // https://www.hackerrank.com/contests/pepdec62017/challenges/pep-java-7recursion-38asciisubsequences
+    public static long countOfAsciiSubsequences(String str,int idx){
+        if(idx==str.length()) return 1;
+        return 3 * countOfAsciiSubsequences(str,idx+1);
+    }
+    public static ArrayList<String> getAsciiSubsequences(String str,int idx){
+        if(idx==str.length()){
+            ArrayList<String> base = new ArrayList<>();
+            base.add("");
+            return base;
+        }
+        ArrayList<String> al = getAsciiSubsequences(str,idx+1);
+        char ch = str.charAt(idx);
+        int val=(ch-'a')+97;
+        String temp =Integer.toString(val);
+        int len = al.size();
+        for(int i=0;i<len;++i){
+            al.add(ch+al.get(i));
+        }
+        for(int i=0;i<len;++i){
+            al.add(temp+al.get(i));
+        }
+        return al;
+    }
+
     
 
 
